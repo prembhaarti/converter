@@ -8,7 +8,7 @@
     <artifactId>converter</artifactId>
     <version>0.0.1</version>
     <properties>
-        <jackson.version>2.9.3</jackson.version>
+        <jackson.version>2.10.0</jackson.version>
     </properties>
 
     <dependencies>
