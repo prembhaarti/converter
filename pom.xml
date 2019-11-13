@@ -12,7 +12,7 @@
     <artifactId>converter</artifactId>
     <version>0.0.1</version>
     <properties>
-        <jackson.version>2.9.3</jackson.version>
+        <jackson.version>2.10.1</jackson.version>
     </properties>
 >>>>>>> c0aff0979a25040b270b3b8bae6457e84c19d614
 
