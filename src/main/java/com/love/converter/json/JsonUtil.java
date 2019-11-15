@@ -1,16 +1,15 @@
 package com.love.converter.json;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.StdSubtypeResolver;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 import java.io.IOException;
-import java.util.Base64;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 public class JsonUtil {
 
@@ -53,6 +52,20 @@ public class JsonUtil {
         } catch (IOException e) {
             throw new RuntimeException("Not able to deser to: " + clazz + " payload: " + payload, e);
         }
+    }
+
+    public static <DeserObject> List<DeserObject> deserList(String payload, Class<DeserObject> clazz) {
+        TypeFactory factory = getObjectMapper().getTypeFactory();
+        CollectionType listType =
+                factory.constructCollectionType(List.class, clazz);
+
+        List<DeserObject> deserObjects = null;
+        try {
+            deserObjects = getObjectMapper().readValue(payload, listType);
+        } catch (Exception e) {
+            throw new RuntimeException("Not able to deser to: " + clazz + " payload: " + payload, e);
+        }
+        return deserObjects;
     }
 
     public static String serialise(Object data) {
