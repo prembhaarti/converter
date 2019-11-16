@@ -2,6 +2,7 @@ package com.love.converter.json;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.StdSubtypeResolver;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -66,6 +67,10 @@ public class JsonUtil {
             throw new RuntimeException("Not able to deser to: " + clazz + " payload: " + payload, e);
         }
         return deserObjects;
+    }
+
+    public static JsonNode toJsonNode(String json) throws IOException {
+        return getObjectMapper().readTree(json);
     }
 
     public static String serialise(Object data) {
