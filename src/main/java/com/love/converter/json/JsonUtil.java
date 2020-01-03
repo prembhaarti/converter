@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.impl.StdSubtypeResolver;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -33,8 +34,10 @@ public class JsonUtil {
         ObjectMapper objectMapperInstance = new ObjectMapper();
         enrichObjectMapper(objectMapperInstance);
         // newInstance request should not override global ObjectMapper instance
-        if (!createNewInstance)
+        if (!createNewInstance) {
             objectMapper = objectMapperInstance;
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        }
 
         return objectMapperInstance;
     }
@@ -67,6 +70,15 @@ public class JsonUtil {
             throw new RuntimeException("Not able to deser to: " + clazz + " payload: " + payload, e);
         }
         return deserObjects;
+    }
+
+    public static <T,U> Map<T,U> deserMap(String payload, Class<T> keyClazz, Class<U> valueClazz){
+        TypeReference<HashMap<T, U>> typeRef = new TypeReference<HashMap<T, U>>() {};
+        try {
+            return getObjectMapper().readValue(payload, typeRef);
+        } catch (IOException e) {
+            throw new RuntimeException("Not able to deser to: " + keyClazz + " or "+valueClazz+" payload: " + payload, e);
+        }
     }
 
     public static JsonNode toJsonNode(String json) throws IOException {
