@@ -1,11 +1,10 @@
 package com.love.converter.string;
 
+import javafx.util.Pair;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StringOpsHandler {
@@ -33,6 +32,29 @@ public class StringOpsHandler {
             joiner.add(data);
         }
         return joiner.toString();
+    }
+
+    public static Pair<String,String> getTwoStringSplittedList(String data, String seperator){
+        List<String> splittedParts = StringOpsHandler.getSplittedList(data, seperator);
+        String head = splittedParts.get(0);
+        List<String> tails = new ArrayList<>();
+        String tail = StringUtils.EMPTY;
+        if(CollectionUtils.isNotEmpty(splittedParts) && splittedParts.size()>1){
+            tails = splittedParts.subList(1, splittedParts.size());
+            for(String tailpart: tails){
+                tail+=tailpart;
+            }
+        }
+        Pair<String,String> pair = new Pair<>(head, tail);
+        return pair;
+    }
+
+    public static String splitAndGetFirst(String data, String seperator){
+        return StringOpsHandler.getSplittedList(data, seperator).get(0);
+    }
+
+    public static String splitAndGetSecond(String data, String seperator){
+        return getTwoStringSplittedList(data, seperator).getValue();
     }
 
     public static String getJoinedStringFromSet(Set<String> list, String joinerString){

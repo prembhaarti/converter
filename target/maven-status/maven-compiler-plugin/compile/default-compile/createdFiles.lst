@@ -7,6 +7,7 @@ com/love/converter/app/Book.class
 com/love/converter/model/ConverterType.class
 com/love/converter/json/JsonConverter.class
 com/love/converter/Converter$1.class
+com/love/converter/encrypt/AESEncryption.class
 com/love/converter/string/RegexHandler.class
 com/love/converter/json/JsonUtil$2.class
 com/love/converter/Converter.class
