@@ -1,9 +1,5 @@
-package com.love.converter.string.processor;
+package com.love.converter.string.processor.mapper;
 
-import com.love.converter.string.processor.mapper.ListToListMapper;
-import com.love.converter.string.processor.mapper.ListToStringMapper;
-import com.love.converter.string.processor.mapper.StringToListMapper;
-import com.love.converter.string.processor.mapper.StringToStringMapper;
 import com.love.converter.string.processor.model.MapperType;
 import com.love.converter.string.processor.model.MappingRequest;
 import javafx.util.Pair;

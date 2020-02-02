@@ -1,7 +1,6 @@
 package com.love.converter.string.processor.mapper;
 
 import com.love.converter.string.StringOpsHandler;
-import com.love.converter.string.processor.Mapper;
 import com.love.converter.string.processor.model.Action;
 import com.love.converter.string.processor.model.ActionSignal;
 import com.love.converter.string.processor.model.MappingRequest;
@@ -44,6 +43,14 @@ public class ListToListMapper extends Mapper {
 
                 case NOT_CONTAINS:
                     mappingRequest.setDataList(dataList.stream().filter(data -> !data.contains(actionData)).collect(Collectors.toList()));
+                    break;
+
+                case LOWERCASE:
+                    mappingRequest.setDataList(dataList.stream().map(data -> data.toLowerCase()).collect(Collectors.toList()));
+                    break;
+
+                case UPPERCASE:
+                    mappingRequest.setDataList(dataList.stream().map(data -> data.toUpperCase()).collect(Collectors.toList()));
                     break;
 
                 case REMOVE:

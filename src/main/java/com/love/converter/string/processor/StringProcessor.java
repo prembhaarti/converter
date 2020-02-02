@@ -1,6 +1,7 @@
 package com.love.converter.string.processor;
 
 import com.love.converter.string.StringOpsHandler;
+import com.love.converter.string.processor.mapper.Mapper;
 import com.love.converter.string.processor.model.Action;
 import com.love.converter.string.processor.model.ActionSignal;
 import com.love.converter.string.processor.model.MapperType;
@@ -13,7 +14,7 @@ public class StringProcessor {
 
     public static void main(String[] args) {
         StringProcessor processor = new StringProcessor();
-        String result = processor.process("q?www.google.com&amp;sdfsf##q?www.xyz.com&amp;asdfge", "list<split:##\nlist<remove:q?\nlist<split_get_head:&amp;\nstring<merge:##");
+        String result = processor.process("q?www.google.com&amp;sdfsf##q?www.xyz.com&amp;asdfge", "list<split:##\nlist<remove:q?\nlist<split_get_head:&amp;\nstring<merge:new_line");
         System.out.println(result);
     }
 

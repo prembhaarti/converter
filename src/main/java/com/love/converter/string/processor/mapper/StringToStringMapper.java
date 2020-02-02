@@ -1,6 +1,5 @@
 package com.love.converter.string.processor.mapper;
 
-import com.love.converter.string.processor.Mapper;
 import com.love.converter.string.processor.model.Action;
 import com.love.converter.string.processor.model.ActionSignal;
 import com.love.converter.string.processor.model.MappingRequest;
