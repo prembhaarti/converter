@@ -10,6 +10,9 @@ import java.util.Map;
 public abstract class Mapper {
 
     static Map<Pair<MapperType,MapperType>, Mapper> inputOuputMapper = new HashMap<>();
+    protected static final String NEW_LINE = "_new_line";
+    protected static final String SPACE = "_space";
+
 
     public static Mapper getMapper(MappingRequest mappingRequest){
         MapperType inputMapperType = mappingRequest.getInputMapperType();

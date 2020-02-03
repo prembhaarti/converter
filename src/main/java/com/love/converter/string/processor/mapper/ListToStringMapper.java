@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ListToStringMapper extends Mapper {
 
-    private static final String NEW_LINE = "new_line";
 
     @Override
     public void map(MappingRequest mappingRequest) {

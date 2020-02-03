@@ -4,6 +4,7 @@ import com.love.converter.string.StringOpsHandler;
 import com.love.converter.string.processor.model.Action;
 import com.love.converter.string.processor.model.ActionSignal;
 import com.love.converter.string.processor.model.MappingRequest;
+import javafx.util.Pair;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -56,6 +57,17 @@ public class ListToListMapper extends Mapper {
                 case REMOVE:
                     mappingRequest.setDataList(dataList.stream()
                             .map(data -> data.replace(actionData, StringUtils.EMPTY))
+                            .collect(Collectors.toList()));
+                    break;
+
+                case REPLACE:
+                    String actionDataCopy = actionData;
+                    if(actionData.contains(SPACE)){
+                        actionDataCopy = actionDataCopy.replace(SPACE, " ");
+                    }
+                    Pair<String, String> keyValuePair = StringOpsHandler.getTwoStringSplittedList(actionDataCopy, "#");
+                    mappingRequest.setDataList(dataList.stream()
+                            .map(data -> data.replace(keyValuePair.getKey(), keyValuePair.getValue()))
                             .collect(Collectors.toList()));
                     break;
 

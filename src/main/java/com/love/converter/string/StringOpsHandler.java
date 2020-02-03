@@ -25,6 +25,11 @@ public class StringOpsHandler {
         return getTrimmedList(splittedData);
     }
 
+    public static List<String> getSplittedListWithoutSpace(String data, String seperator){
+        List<String> splittedData = Arrays.asList(data.split(seperator));
+        return splittedData;
+    }
+
 
     public static String getJoinedString(List<String> list, String joinerString){
         StringJoiner joiner = new StringJoiner(joinerString);
@@ -35,7 +40,7 @@ public class StringOpsHandler {
     }
 
     public static Pair<String,String> getTwoStringSplittedList(String data, String seperator){
-        List<String> splittedParts = StringOpsHandler.getSplittedList(data, seperator);
+        List<String> splittedParts = StringOpsHandler.getSplittedListWithoutSpace(data, seperator);
         String head = splittedParts.get(0);
         List<String> tails = new ArrayList<>();
         String tail = StringUtils.EMPTY;
