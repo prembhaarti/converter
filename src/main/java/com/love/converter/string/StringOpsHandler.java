@@ -8,6 +8,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class StringOpsHandler {
+
+    private static final String WORD_SEPARATOR = " ";
+
     public static void main(String[] args) {
         String data = "attrib:xyz:href:b";
         System.out.println(StringUtils.substringAfter(data, ":"));
@@ -38,6 +41,22 @@ public class StringOpsHandler {
         }
         return joiner.toString();
     }
+
+    public static String getTitleCase(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+
+        return Arrays
+                .stream(text.split(WORD_SEPARATOR))
+                .map(word -> word.isEmpty()
+                        ? word
+                        : Character.toTitleCase(word.charAt(0)) + word
+                        .substring(1)
+                        .toLowerCase())
+                .collect(Collectors.joining(WORD_SEPARATOR));
+    }
+
 
     public static Pair<String,String> getTwoStringSplittedList(String data, String seperator){
         List<String> splittedParts = StringOpsHandler.getSplittedListWithoutSpace(data, seperator);

@@ -54,6 +54,10 @@ public class ListToListMapper extends Mapper {
                     mappingRequest.setDataList(dataList.stream().map(data -> data.toUpperCase()).collect(Collectors.toList()));
                     break;
 
+                case SENTENCECASE:
+                    mappingRequest.setDataList(dataList.stream().map(data -> StringOpsHandler.getTitleCase(data)).collect(Collectors.toList()));
+                    break;
+
                 case REMOVE:
                     mappingRequest.setDataList(dataList.stream()
                             .map(data -> data.replace(actionData, StringUtils.EMPTY))
