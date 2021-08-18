@@ -86,8 +86,6 @@ public class ListToListMapper extends Mapper {
                             .map(data -> StringOpsHandler.splitAndGetSecond(data, actionData))
                             .collect(Collectors.toList()));
                     break;
-
-
             }
         }
 
